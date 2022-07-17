@@ -1,9 +1,9 @@
 import React from 'react';
-import { useQuery } from 'react-query';
-import { generateJSON } from './api/generateJSON';
+import { useJsonData } from './hooks';
+import SortableTable from './components/SortableTable';
 
 function App() {
-  const { isLoading, isError, data } = useQuery('expenses', generateJSON);
+  const { isLoading, isError, data } = useJsonData();
 
   if (isLoading) {
     return <h2>Loading ...</h2>;
@@ -13,11 +13,10 @@ function App() {
     return <h2>Something went wrong, can not load JSON data</h2>;
   }
 
-  console.log(data);
-
   return (
     <div className="App">
       <header className="App-header">Transactions</header>
+      {data && <SortableTable tableData={data} />}
     </div>
   );
 }
