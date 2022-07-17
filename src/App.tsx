@@ -1,24 +1,21 @@
-import React from 'react';
 import { useJsonData } from './hooks';
-import SortableTable from './components/SortableTable';
+import { StyledLayout } from './styles/Layout.styled';
+import Table from './components/Table';
 
 function App() {
   const { isLoading, isError, data } = useJsonData();
 
   if (isLoading) {
-    return <h2>Loading ...</h2>;
+    return <StyledLayout>Loading ...</StyledLayout>;
   }
 
   if (isError) {
-    return <h2>Something went wrong, can not load JSON data</h2>;
+    return (
+      <StyledLayout>Something went wrong, can not load JSON data</StyledLayout>
+    );
   }
 
-  return (
-    <div className="App">
-      <header className="App-header">Transactions</header>
-      {data && <SortableTable tableData={data} />}
-    </div>
-  );
+  return <StyledLayout>{data && <Table data={data} />}</StyledLayout>;
 }
 
 export default App;

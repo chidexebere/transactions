@@ -1,4 +1,5 @@
-import { useSortableData } from '../hooks';
+import { useSortableData } from '../../hooks';
+import { StyledTable } from '../../styles/Table.styled';
 
 interface Props {
   tableData: jsonDataObject[];
@@ -16,8 +17,8 @@ const SortableTable = ({ tableData }: Props) => {
   ];
 
   return (
-    <table>
-      <caption>Our products</caption>
+    <StyledTable>
+      <caption>Expenses</caption>
       <thead>
         <tr>
           {tableHeaders.map((header) => (
@@ -32,7 +33,7 @@ const SortableTable = ({ tableData }: Props) => {
       <tbody>
         {sortedData.map((data, index) => (
           <tr key={index}>
-            <td>{data.departments}</td>
+            <td width="30%">{data.departments}</td>
             <td>{data.project_name}</td>
             <td>{data.amount}</td>
             <td>{data.date}</td>
@@ -40,7 +41,7 @@ const SortableTable = ({ tableData }: Props) => {
           </tr>
         ))}
       </tbody>
-    </table>
+    </StyledTable>
   );
 };
 
