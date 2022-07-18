@@ -6,6 +6,7 @@ export const StyledTable = styled.table`
   border-collapse: collapse;
   font-size: 1.5rem;
   box-shadow: 0 8px 6px -4px gray;
+  width: 100%;
 
   td,
   th {
@@ -18,6 +19,9 @@ export const StyledTable = styled.table`
 
   td {
     padding: 2rem;
+    :nth-of-type(1) {
+      padding-right: 8rem;
+    }
     :nth-of-type(3) {
       text-align: right;
     }

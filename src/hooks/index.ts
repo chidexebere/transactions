@@ -8,7 +8,7 @@ const useJsonData = () => {
 };
 
 // Sort Table Data
-const useSortableData = (data: jsonDataObject[]) => {
+const useSortableData = (data: jsonDataObject[] | any) => {
   const [sortConfig, setSortConfig] = useState<TableConfig | null>(null);
 
   const sortedData = useMemo(() => {

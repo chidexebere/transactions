@@ -1,3 +1,4 @@
+import { getIconDirection } from '../../helpers';
 import { useSortableData } from '../../hooks';
 import { StyledButton } from '../../styles/Button.styled';
 import { StyledTable } from '../../styles/Table.styled';
@@ -17,13 +18,6 @@ const SortableTable = ({ tableData }: Props) => {
     { key: 'member_name', label: 'Name' },
   ];
 
-  const getIconDirection = (key: TableKey) => {
-    if (!sortConfig) {
-      return;
-    }
-    return sortConfig.key === key ? sortConfig.direction : undefined;
-  };
-
   return (
     <StyledTable>
       <caption>Expenses</caption>
@@ -37,9 +31,9 @@ const SortableTable = ({ tableData }: Props) => {
               >
                 {header.label}
                 <span>
-                  {getIconDirection(header.key) === 'ascending'
+                  {getIconDirection(header.key, sortConfig) === 'ascending'
                     ? '▲'
-                    : getIconDirection(header.key) === 'descending'
+                    : getIconDirection(header.key, sortConfig) === 'descending'
                     ? '▼'
                     : ''}
                 </span>
@@ -51,7 +45,7 @@ const SortableTable = ({ tableData }: Props) => {
       <tbody>
         {sortedData.map((data, index) => (
           <tr key={index}>
-            <td width="30%">{data.departments}</td>
+            <td>{data.departments}</td>
             <td>{data.project_name}</td>
             <td>{data.amount}</td>
             <td>{data.date}</td>

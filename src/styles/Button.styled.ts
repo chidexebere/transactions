@@ -5,7 +5,7 @@ export const StyledButton = styled.button<StyledBtn>`
   color: ${({ primary }) => (primary ? 'white' : '#0096FF')};
   cursor: pointer;
   font-size: 1.5rem;
-  margin: 1rem;
+  margin-bottom: 1rem;
   padding: 0.5rem 1rem;
   border: ${({ primary }) => (primary ? '2px solid #0096ff' : '0')};
   border-radius: 3px;

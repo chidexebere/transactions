@@ -9,5 +9,9 @@ export const StyledLayout = styled.div`
 export const StyledRightNav = styled.nav`
   font-size: 3rem;
   text-align: right;
-  width: 60%;
+`;
+
+export const StyledLeftNav = styled.nav`
+  font-size: 3rem;
+  text-align: left;
 `;
