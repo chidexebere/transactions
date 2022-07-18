@@ -1,21 +1,33 @@
 import styled from 'styled-components';
 
 export const StyledTable = styled.table`
+  font-family: monospace, monospace;
   border: none;
   border-collapse: collapse;
   font-size: 1.5rem;
+  box-shadow: 0 8px 6px -4px gray;
 
   td,
   th {
     border: none;
+    text-align: centre;
+    :nth-of-type(1) {
+      text-align: left;
+    }
   }
 
   td {
     padding: 2rem;
+    :nth-of-type(3) {
+      text-align: right;
+    }
+    :nth-of-type(4) {
+      text-align: right;
+    }
   }
 
   tbody tr {
-    :nth-of-type(odd) {
+    :nth-of-type(even) {
       background-color: #efefef;
     }
     :hover {
@@ -23,7 +35,7 @@ export const StyledTable = styled.table`
     }
   }
   thead > tr {
-    background-color: #c2c2c2;
+    background-color: #efefef;
   }
   caption {
     font-size: 2rem;

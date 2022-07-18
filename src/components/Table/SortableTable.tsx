@@ -1,4 +1,5 @@
 import { useSortableData } from '../../hooks';
+import { StyledButton } from '../../styles/Button.styled';
 import { StyledTable } from '../../styles/Table.styled';
 
 interface Props {
@@ -6,7 +7,7 @@ interface Props {
 }
 
 const SortableTable = ({ tableData }: Props) => {
-  const { sortedData, handleSort } = useSortableData(tableData);
+  const { sortedData, handleSort, sortConfig } = useSortableData(tableData);
 
   const tableHeaders: TableHeader[] = [
     { key: 'departments', label: 'Departments' },
@@ -16,6 +17,13 @@ const SortableTable = ({ tableData }: Props) => {
     { key: 'member_name', label: 'Name' },
   ];
 
+  const getIconDirection = (key: TableKey) => {
+    if (!sortConfig) {
+      return;
+    }
+    return sortConfig.key === key ? sortConfig.direction : undefined;
+  };
+
   return (
     <StyledTable>
       <caption>Expenses</caption>
@@ -23,9 +31,19 @@ const SortableTable = ({ tableData }: Props) => {
         <tr>
           {tableHeaders.map((header) => (
             <th key={header.key}>
-              <button type="button" onClick={() => handleSort(header.key)}>
+              <StyledButton
+                type="button"
+                onClick={() => handleSort(header.key)}
+              >
                 {header.label}
-              </button>
+                <span>
+                  {getIconDirection(header.key) === 'ascending'
+                    ? '▲'
+                    : getIconDirection(header.key) === 'descending'
+                    ? '▼'
+                    : ''}
+                </span>
+              </StyledButton>
             </th>
           ))}
         </tr>

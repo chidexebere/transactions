@@ -22,3 +22,7 @@ type TableHeader = {
   key: TableKey;
   label: string;
 };
+
+type StyledBtn = {
+  primary?: boolean;
+};

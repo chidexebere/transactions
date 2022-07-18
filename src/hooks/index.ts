@@ -67,7 +67,7 @@ const useSortableData = (data: jsonDataObject[]) => {
     setSortConfig({ key, direction });
   };
 
-  return { sortedData, handleSort };
+  return { sortedData, handleSort, sortConfig };
 };
 
 export { useJsonData, useSortableData };

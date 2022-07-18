@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { StyledButton } from '../../styles/Button.styled';
+import { StyledRightNav } from '../../styles/Layout.styled';
 import GroupedTable from './GroupedTable';
 import SortableTable from './SortableTable';
 
@@ -13,7 +15,14 @@ const Table = ({ data }: Props) => {
       {showGroupView === true ? (
         <GroupedTable tableData={data} />
       ) : (
-        <SortableTable tableData={data} />
+        <>
+          <StyledRightNav>
+            <StyledButton type="button" primary>
+              View Grouped Data
+            </StyledButton>
+          </StyledRightNav>
+          <SortableTable tableData={data} />
+        </>
       )}
     </>
   );
