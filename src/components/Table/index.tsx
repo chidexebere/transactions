@@ -17,6 +17,7 @@ const Table = ({ data }: Props) => {
         <>
           <StyledLeftNav>
             <StyledButton
+              data-testid="back-to-expenses"
               type="button"
               primary
               onClick={() => setShowGroupView(false)}
@@ -30,6 +31,7 @@ const Table = ({ data }: Props) => {
         <>
           <StyledRightNav>
             <StyledButton
+              data-testid="view-grouped-data"
               type="button"
               primary
               onClick={() => setShowGroupView(true)}
