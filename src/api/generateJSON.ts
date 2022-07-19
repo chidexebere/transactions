@@ -6,6 +6,10 @@ export const generateJSON = async () => {
     'https://raw.githubusercontent.com/Pectus-Finance/hiring-exercises/master/frontend/expanses.csv',
   );
 
+  if (!response.ok) {
+    throw new Error(response.statusText);
+  }
+
   const data = await response.text();
   jsonData = await csv().fromString(data);
   return jsonData;
