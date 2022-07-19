@@ -6,12 +6,18 @@ function App() {
   const { isLoading, isError, data } = useJsonData();
 
   if (isLoading) {
-    return <StyledLayout>Loading ...</StyledLayout>;
+    return (
+      <StyledLayout>
+        <h1>Loading ...</h1>
+      </StyledLayout>
+    );
   }
 
   if (isError) {
     return (
-      <StyledLayout>Something went wrong, can not load JSON data</StyledLayout>
+      <StyledLayout>
+        <h1>Something went wrong, can not load table data</h1>
+      </StyledLayout>
     );
   }
 
