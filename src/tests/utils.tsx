@@ -2,11 +2,21 @@ import { render } from '@testing-library/react';
 import { rest } from 'msw';
 import * as React from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import sampleJSON from './sampleResponseData/sampleData.json';
 
 export const handlers = [
   rest.get('*/fetch JSON data', (req, res, ctx) => {
-    return res(ctx.status(200), ctx.json(sampleJSON));
+    return res(
+      ctx.status(200),
+      ctx.json([
+        {
+          departments: 'IT',
+          project_name: 'Gaama',
+          amount: '1,200.00€',
+          date: '10/2/2021',
+          member_name: 'Sam',
+        },
+      ]),
+    );
   }),
 ];
 
