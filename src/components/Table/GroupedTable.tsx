@@ -35,8 +35,6 @@ const GroupedTable = ({ tableData }: Props) => {
     return filteredData;
   };
 
-  console.log(filterData(selectOption));
-
   const getTotal = () => {
     return filterData(selectOption)
       .map((item) => item.sum)
@@ -65,16 +63,18 @@ const GroupedTable = ({ tableData }: Props) => {
   return (
     <>
       <SelectWrapper>
-        <label htmlFor="table-header-select">Total Expenses by:</label>
-        <StyledSelect
-          id="table-header-select"
-          onChange={(e) => setSelectOption(e.target.value as TableKey)}
-        >
-          <option value="departments">Departments</option>
-          <option value="project_name">Project Name</option>
-          <option value="date">Date</option>
-          <option value="member_name">Name</option>
-        </StyledSelect>
+        <form>
+          <label htmlFor="table-header-select">Total Expenses by:</label>
+          <StyledSelect
+            id="table-header-select"
+            onChange={(e) => setSelectOption(e.target.value as TableKey)}
+          >
+            <option value="departments">Departments</option>
+            <option value="project_name">Project Name</option>
+            <option value="date">Date</option>
+            <option value="member_name">Name</option>
+          </StyledSelect>
+        </form>
       </SelectWrapper>
       <StyledTable>
         <caption>Grouped Expenses</caption>
@@ -96,7 +96,7 @@ const GroupedTable = ({ tableData }: Props) => {
                 </span>
               </StyledButton>
             </th>
-            <th>
+            <th style={{ textAlign: 'right' }}>
               <StyledButton type="button">Amount</StyledButton>
             </th>
           </tr>
@@ -105,14 +105,14 @@ const GroupedTable = ({ tableData }: Props) => {
           {sortedData.map((data, index) => (
             <tr key={index}>
               <td>{data[selectOption]}</td>
-              <td>{makeCurrency(data.sum)}</td>
+              <td style={{ textAlign: 'right' }}>{makeCurrency(data.sum)}</td>
             </tr>
           ))}
         </tbody>
         <tfoot>
           <tr>
             <td> Total</td>
-            <td>{makeCurrency(getTotal())}</td>
+            <td style={{ textAlign: 'right' }}>{makeCurrency(getTotal())}</td>
           </tr>
         </tfoot>
       </StyledTable>

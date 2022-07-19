@@ -41,6 +41,9 @@ export const StyledTable = styled.table`
   thead > tr {
     background-color: #efefef;
   }
+  tfoot > tr {
+    font-weight: bold;
+  }
   caption {
     font-size: 2rem;
     margin-bottom: 2rem;
