@@ -7,7 +7,7 @@ function App() {
 
   if (isLoading) {
     return (
-      <StyledLayout>
+      <StyledLayout role="alert" aria-label="loading">
         <h1>Loading ...</h1>
       </StyledLayout>
     );

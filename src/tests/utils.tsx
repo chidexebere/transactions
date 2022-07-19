@@ -2,7 +2,7 @@ import { render } from '@testing-library/react';
 import { rest } from 'msw';
 import * as React from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import sampleJSON from './sampleResponseData/sampleJSONData.json';
+import sampleJSON from './sampleResponseData/sampleData.json';
 
 export const handlers = [
   rest.get('*/fetch JSON data', (req, res, ctx) => {
