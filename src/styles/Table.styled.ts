@@ -50,4 +50,24 @@ export const StyledTable = styled.table`
     font-weight: bold;
     text-align: left;
   }
+
+  @media (max-width: 640px) {
+    thead {
+      display: none;
+    }
+    td {
+      display: block;
+
+      :nth-of-type(odd) {
+        text-align: left;
+      }
+      :nth-of-type(even) {
+        text-align: left;
+      }
+    }
+    td:first-child {
+      font-weight: bold;
+      margin: 1rem 0 0.5rem;
+    }
+  }
 `;

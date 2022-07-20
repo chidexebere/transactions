@@ -17,6 +17,10 @@ export const StyledSelect = styled.select`
     min-height: 20px;
     padding: 0px 2px 1px;
   }
+
+  @media (max-width: 640px) {
+    width: 50%;
+  }
 `;
 
 export const SelectWrapper = styled.div`
@@ -26,5 +30,10 @@ export const SelectWrapper = styled.div`
 
   label {
     font-size: 1.5rem;
+  }
+
+  @media (max-width: 640px) {
+    text-align: none;
+    width: 100%;
   }
 `;
