@@ -7,8 +7,9 @@ import {
 } from '../../helpers';
 import { useSortableData } from '../../hooks';
 import { StyledButton } from '../../styles/Button.styled';
-import { SelectWrapper, StyledSelect } from '../../styles/Select.styled';
+import { SelectWrapper } from '../../styles/Select.styled';
 import { StyledTable } from '../../styles/Table.styled';
+import Select from '../Select';
 
 const GroupedTable = ({ tableData }: TableProps) => {
   const [selectOption, setSelectOption] = useState<TableKey>('departments');
@@ -16,6 +17,8 @@ const GroupedTable = ({ tableData }: TableProps) => {
   const filteredData = filterData(tableData, selectOption);
 
   const { sortedData, handleSort, sortConfig } = useSortableData(filteredData);
+
+  console.log(sortedData);
 
   const getHeader = (selectOption: TableKey): string => {
     if (selectOption === 'departments') return 'Departments';
@@ -25,21 +28,21 @@ const GroupedTable = ({ tableData }: TableProps) => {
     return '';
   };
 
+  const options: TableHeader[] = [
+    { key: 'departments', label: 'Departments' },
+    { key: 'project_name', label: 'Project Name' },
+    { key: 'date', label: 'Date' },
+    { key: 'member_name', label: 'Name' },
+  ];
+
   return (
     <>
       <SelectWrapper>
-        <form>
-          <label htmlFor="table-header-select">Total Expenses by:</label>
-          <StyledSelect
-            id="table-header-select"
-            onChange={(e) => setSelectOption(e.target.value as TableKey)}
-          >
-            <option value="departments">Departments</option>
-            <option value="project_name">Project Name</option>
-            <option value="date">Date</option>
-            <option value="member_name">Name</option>
-          </StyledSelect>
-        </form>
+        <Select
+          selectLabel="Total Expenses by"
+          options={options}
+          setSelectOption={setSelectOption}
+        />
       </SelectWrapper>
       <StyledTable>
         <caption>Grouped Expenses</caption>
@@ -62,7 +65,17 @@ const GroupedTable = ({ tableData }: TableProps) => {
               </StyledButton>
             </th>
             <th style={{ textAlign: 'right' }}>
-              <StyledButton type="button">Amount</StyledButton>
+              {/* <StyledButton type="button">Amount</StyledButton> */}
+              <StyledButton type="button" onClick={() => handleSort('sum')}>
+                Amount
+                <span>
+                  {getIconDirection('sum', sortConfig) === 'ascending'
+                    ? '▲'
+                    : getIconDirection('sum', sortConfig) === 'descending'
+                    ? '▼'
+                    : ''}
+                </span>
+              </StyledButton>
             </th>
           </tr>
         </thead>

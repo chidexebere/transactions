@@ -1,6 +1,6 @@
 // Gets the direction of the table header icon either ascending or descending
 export const getIconDirection = (
-  key: TableKey,
+  key: TableKey | GroupKey,
   sortConfig: TableConfig | null,
 ) => {
   if (!sortConfig) {
@@ -72,14 +72,14 @@ export const sortAmount = (
 ) => {
   sortableData.sort((a, b) => {
     if (
-      parseFloat(a[sortConfig.key].replace(/(^\$|,)/g, '')) <
-      parseFloat(b[sortConfig.key].replace(/(^\$|,)/g, ''))
+      parseFloat(a['amount'].replace(/(^\$|,)/g, '')) <
+      parseFloat(b['amount'].replace(/(^\$|,)/g, ''))
     ) {
       return sortConfig.direction === 'ascending' ? -1 : 1;
     }
     if (
-      parseFloat(a[sortConfig.key].replace(/(^\$|,)/g, '')) >
-      parseFloat(b[sortConfig.key].replace(/(^\$|,)/g, ''))
+      parseFloat(a['amount'].replace(/(^\$|,)/g, '')) >
+      parseFloat(b['amount'].replace(/(^\$|,)/g, ''))
     ) {
       return sortConfig.direction === 'ascending' ? 1 : -1;
     }
@@ -92,10 +92,10 @@ export const sortDate = (
   sortConfig: TableConfig,
 ) => {
   sortableData.sort((a, b) => {
-    if (new Date(a[sortConfig.key]) < new Date(b[sortConfig.key])) {
+    if (new Date(a['date']) < new Date(b['date'])) {
       return sortConfig.direction === 'ascending' ? -1 : 1;
     }
-    if (new Date(a[sortConfig.key]) > new Date(b[sortConfig.key])) {
+    if (new Date(a['date']) > new Date(b['date'])) {
       return sortConfig.direction === 'ascending' ? 1 : -1;
     }
     return 0;

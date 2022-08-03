@@ -19,7 +19,7 @@ type TableKey =
   | 'member_name';
 
 type TableConfig = {
-  key: TableKey;
+  key: TableKey | GroupKey;
   direction: string;
 };
 
@@ -36,5 +36,13 @@ type GroupedFilteredData = {
   [key: string]: string;
   sum: number;
 };
+
+type GroupKey =
+  | 'departments'
+  | 'project_name'
+  | 'amount'
+  | 'date'
+  | 'member_name'
+  | 'sum';
 
 type SortableDataTypes = (GroupedFilteredData | JsonDataObject)[];

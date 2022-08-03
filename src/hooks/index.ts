@@ -27,7 +27,7 @@ const useSortableData = (data: SortableDataTypes) => {
     return sortableData;
   }, [data, sortConfig]);
 
-  const handleSort = (key: TableKey) => {
+  const handleSort = (key: TableKey | GroupKey) => {
     let direction = 'ascending';
     if (
       sortConfig &&
