@@ -21,7 +21,7 @@ function App() {
     );
   }
 
-  return <StyledLayout>{data && <Table data={data} />}</StyledLayout>;
+  return <StyledLayout>{data && <Table tableData={data} />}</StyledLayout>;
 }
 
 export default App;

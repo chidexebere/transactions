@@ -3,11 +3,7 @@ import { useSortableData } from '../../hooks';
 import { StyledButton } from '../../styles/Button.styled';
 import { StyledTable } from '../../styles/Table.styled';
 
-interface Props {
-  tableData: jsonDataObject[];
-}
-
-const SortableTable = ({ tableData }: Props) => {
+const SortableTable = ({ tableData }: TableProps) => {
   const { sortedData, handleSort, sortConfig } = useSortableData(tableData);
 
   const tableHeaders: TableHeader[] = [

@@ -1,9 +1,14 @@
-type jsonDataObject = {
+type JsonDataObject = {
   departments: string;
   project_name: string;
   amount: string;
   date: string;
   member_name: string;
+  sum: number;
+};
+
+type TableProps = {
+  tableData: jsonDataObject[];
 };
 
 type TableKey =
@@ -26,3 +31,10 @@ type TableHeader = {
 type StyledBtn = {
   primary?: boolean;
 };
+
+type GroupedFilteredData = {
+  [key: string]: string;
+  sum: number;
+};
+
+type SortableDataTypes = (GroupedFilteredData | JsonDataObject)[];

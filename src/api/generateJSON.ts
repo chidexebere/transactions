@@ -1,7 +1,7 @@
 import csv from 'csvtojson';
 
 export const generateJSON = async () => {
-  let jsonData: jsonDataObject[] = [];
+  let jsonData: JsonDataObject[] = [];
   const response = await fetch(
     'https://raw.githubusercontent.com/Pectus-Finance/hiring-exercises/master/frontend/expanses.csv',
   );

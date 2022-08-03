@@ -1,56 +1,21 @@
 import { useState } from 'react';
-import { getIconDirection } from '../../helpers';
+import {
+  getIconDirection,
+  makeCurrency,
+  filterData,
+  getTotal,
+} from '../../helpers';
 import { useSortableData } from '../../hooks';
 import { StyledButton } from '../../styles/Button.styled';
 import { SelectWrapper, StyledSelect } from '../../styles/Select.styled';
 import { StyledTable } from '../../styles/Table.styled';
 
-interface Props {
-  tableData: jsonDataObject[];
-}
-
-const GroupedTable = ({ tableData }: Props) => {
+const GroupedTable = ({ tableData }: TableProps) => {
   const [selectOption, setSelectOption] = useState<TableKey>('departments');
 
-  const selectedDataCells = Array.from(
-    new Set(tableData.map((data: jsonDataObject) => data[selectOption])),
-  );
+  const filteredData = filterData(tableData, selectOption);
 
-  const sumOfSelectedCells = (selectedDataCell: string) => {
-    return tableData
-      .filter((data) => data[selectOption] === selectedDataCell)
-      .map((item) => parseFloat(item.amount.replace(/(^\$|,)/g, '')))
-      .reduce((prev, cur) => prev + cur);
-  };
-
-  const filterData = (selectOption: TableKey) => {
-    const filteredData = [] as any[];
-    selectedDataCells.forEach((selectedDataCell) => {
-      const newRow = {} as any;
-      newRow[selectOption] = selectedDataCell;
-      newRow.sum = sumOfSelectedCells(selectedDataCell);
-      filteredData.push(newRow);
-    });
-
-    return filteredData;
-  };
-
-  const getTotal = () => {
-    return filterData(selectOption)
-      .map((item) => item.sum)
-      .reduce((prev, cur) => prev + cur);
-  };
-
-  const makeCurrency = (amount: number) => {
-    return new Intl.NumberFormat('de-DE', {
-      style: 'currency',
-      currency: 'EUR',
-    }).format(amount);
-  };
-
-  const { sortedData, handleSort, sortConfig } = useSortableData(
-    filterData(selectOption),
-  );
+  const { sortedData, handleSort, sortConfig } = useSortableData(filteredData);
 
   const getHeader = (selectOption: TableKey): string => {
     if (selectOption === 'departments') return 'Departments';
@@ -112,7 +77,9 @@ const GroupedTable = ({ tableData }: Props) => {
         <tfoot>
           <tr>
             <td> Total</td>
-            <td style={{ textAlign: 'right' }}>{makeCurrency(getTotal())}</td>
+            <td style={{ textAlign: 'right' }}>
+              {makeCurrency(getTotal(filteredData))}
+            </td>
           </tr>
         </tfoot>
       </StyledTable>

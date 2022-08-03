@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react';
 import { useQuery } from 'react-query';
 import { generateJSON } from '../api/generateJSON';
+import { sortAmount, sortDate, sortField } from '../helpers';
 
 // Get Table JSON Data
 const useJsonData = () => {
@@ -8,48 +9,19 @@ const useJsonData = () => {
 };
 
 // Sort Table Data
-const useSortableData = (data: jsonDataObject[] | any) => {
+const useSortableData = (data: SortableDataTypes) => {
   const [sortConfig, setSortConfig] = useState<TableConfig | null>(null);
 
   const sortedData = useMemo(() => {
     const sortableData = [...data];
+
     if (sortConfig !== null) {
       if (sortConfig.key === 'amount') {
-        sortableData.sort((a, b) => {
-          if (
-            parseFloat(a[sortConfig.key].replace(/(^\$|,)/g, '')) <
-            parseFloat(b[sortConfig.key].replace(/(^\$|,)/g, ''))
-          ) {
-            return sortConfig.direction === 'ascending' ? -1 : 1;
-          }
-          if (
-            parseFloat(a[sortConfig.key].replace(/(^\$|,)/g, '')) >
-            parseFloat(b[sortConfig.key].replace(/(^\$|,)/g, ''))
-          ) {
-            return sortConfig.direction === 'ascending' ? 1 : -1;
-          }
-          return 0;
-        });
+        sortAmount(sortableData, sortConfig);
       } else if (sortConfig.key === 'date') {
-        sortableData.sort((a, b) => {
-          if (new Date(a[sortConfig.key]) < new Date(b[sortConfig.key])) {
-            return sortConfig.direction === 'ascending' ? -1 : 1;
-          }
-          if (new Date(a[sortConfig.key]) > new Date(b[sortConfig.key])) {
-            return sortConfig.direction === 'ascending' ? 1 : -1;
-          }
-          return 0;
-        });
+        sortDate(sortableData, sortConfig);
       } else {
-        sortableData.sort((a, b) => {
-          if (a[sortConfig.key] < b[sortConfig.key]) {
-            return sortConfig.direction === 'ascending' ? -1 : 1;
-          }
-          if (a[sortConfig.key] > b[sortConfig.key]) {
-            return sortConfig.direction === 'ascending' ? 1 : -1;
-          }
-          return 0;
-        });
+        sortField(sortableData, sortConfig);
       }
     }
     return sortableData;

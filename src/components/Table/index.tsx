@@ -4,28 +4,26 @@ import { StyledLeftNav, StyledRightNav } from '../../styles/Layout.styled';
 import GroupedTable from './GroupedTable';
 import SortableTable from './SortableTable';
 
-interface Props {
-  data: jsonDataObject[];
-}
-
-const Table = ({ data }: Props) => {
+const Table = ({ tableData }: TableProps) => {
   const [showGroupView, setShowGroupView] = useState(false);
+
+  const toggleView = () => setShowGroupView(!showGroupView);
 
   return (
     <section>
-      {showGroupView === true ? (
+      {showGroupView ? (
         <>
           <StyledLeftNav>
             <StyledButton
               data-testid="back-to-expenses"
               type="button"
               primary
-              onClick={() => setShowGroupView(false)}
+              onClick={toggleView}
             >
               Back to Expenses
             </StyledButton>
           </StyledLeftNav>
-          <GroupedTable tableData={data} />
+          <GroupedTable tableData={tableData} />
         </>
       ) : (
         <>
@@ -34,12 +32,12 @@ const Table = ({ data }: Props) => {
               data-testid="view-grouped-data"
               type="button"
               primary
-              onClick={() => setShowGroupView(true)}
+              onClick={toggleView}
             >
               View Grouped Data
             </StyledButton>
           </StyledRightNav>
-          <SortableTable tableData={data} />
+          <SortableTable tableData={tableData} />
         </>
       )}
     </section>
