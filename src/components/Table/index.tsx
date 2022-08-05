@@ -7,7 +7,7 @@ import SortableTable from './SortableTable';
 const Table = ({ tableData }: TableProps) => {
   const [showGroupView, setShowGroupView] = useState(false);
 
-  const toggleView = () => setShowGroupView(!showGroupView);
+  const toggleView = () => setShowGroupView((currView) => !currView);
 
   return (
     <section>

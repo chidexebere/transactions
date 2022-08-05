@@ -18,8 +18,6 @@ const GroupedTable = ({ tableData }: TableProps) => {
 
   const { sortedData, handleSort, sortConfig } = useSortableData(filteredData);
 
-  console.log(sortedData);
-
   const getHeader = (selectOption: TableKey): string => {
     if (selectOption === 'departments') return 'Departments';
     if (selectOption === 'project_name') return 'Project Name';
@@ -65,7 +63,6 @@ const GroupedTable = ({ tableData }: TableProps) => {
               </StyledButton>
             </th>
             <th style={{ textAlign: 'right' }}>
-              {/* <StyledButton type="button">Amount</StyledButton> */}
               <StyledButton type="button" onClick={() => handleSort('sum')}>
                 Amount
                 <span>

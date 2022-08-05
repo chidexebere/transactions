@@ -1,24 +1,24 @@
-import { screen, waitForElementToBeRemoved } from '@testing-library/react';
+import { waitForElementToBeRemoved } from '@testing-library/react';
 import { rest } from 'msw';
 import App from '../App';
 import { server } from '../setupTests';
 import { renderWithClient } from './utils';
 
-const waitForLoading = () => {
-  return waitForElementToBeRemoved(() =>
-    screen.getByRole('alert', { name: 'loading' }),
-  );
-};
-
 describe('<App />', () => {
-  it('sucessful JSON data fetch', async () => {
+  it('should fetch data display on table after displaying loading', async () => {
     const result = renderWithClient(<App />);
 
-    await waitForLoading();
+    // Wait For Loading
+    await waitForElementToBeRemoved(
+      () => result.getByRole('alert', { name: 'loading' }),
+      { timeout: 2000 },
+    );
+
     expect(
       result.getByRole('button', { name: 'View Grouped Data' }),
     ).toBeInTheDocument();
     expect(result.getByRole('table', { name: 'Expenses' })).toBeInTheDocument();
+    expect(result.getAllByText(/IT/i)[0]).toBeInTheDocument();
   });
 
   it('should display error if fetching JSON data fails ', async () => {

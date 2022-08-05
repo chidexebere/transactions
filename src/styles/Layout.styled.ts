@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const StyledLayout = styled.div`
+export const StyledLayout = styled.section`
   display: grid;
   place-items: center;
   margin: 2rem 0;
