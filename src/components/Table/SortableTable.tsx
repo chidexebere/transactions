@@ -26,7 +26,7 @@ const SortableTable = ({ tableData }: TableProps) => {
                 onClick={() => handleSort(header.key)}
               >
                 {header.label}
-                <span>
+                <span data-testid="sort-icon">
                   {getIconDirection(header.key, sortConfig) === 'ascending'
                     ? '▲'
                     : getIconDirection(header.key, sortConfig) === 'descending'
@@ -41,11 +41,11 @@ const SortableTable = ({ tableData }: TableProps) => {
       <tbody>
         {sortedData.map((data, index) => (
           <tr key={index}>
-            <td>{data.departments}</td>
-            <td>{data.project_name}</td>
-            <td>{data.amount}</td>
-            <td>{data.date}</td>
-            <td>{data.member_name}</td>
+            <td id="departments">{data.departments}</td>
+            <td id="project_name">{data.project_name}</td>
+            <td id="amount">{data.amount}</td>
+            <td id="date">{data.date}</td>
+            <td id="member_name">{data.member_name}</td>
           </tr>
         ))}
       </tbody>

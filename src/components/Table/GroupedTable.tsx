@@ -52,7 +52,7 @@ const GroupedTable = ({ tableData }: TableProps) => {
                 onClick={() => handleSort(selectOption)}
               >
                 {getHeader(selectOption)}
-                <span>
+                <span data-testid="sort-icon">
                   {getIconDirection(selectOption, sortConfig) === 'ascending'
                     ? '▲'
                     : getIconDirection(selectOption, sortConfig) ===
@@ -65,7 +65,7 @@ const GroupedTable = ({ tableData }: TableProps) => {
             <th style={{ textAlign: 'right' }}>
               <StyledButton type="button" onClick={() => handleSort('sum')}>
                 Amount
-                <span>
+                <span data-testid="sort-icon">
                   {getIconDirection('sum', sortConfig) === 'ascending'
                     ? '▲'
                     : getIconDirection('sum', sortConfig) === 'descending'
@@ -79,15 +79,17 @@ const GroupedTable = ({ tableData }: TableProps) => {
         <tbody>
           {sortedData.map((data, index) => (
             <tr key={index}>
-              <td>{data[selectOption]}</td>
-              <td style={{ textAlign: 'right' }}>{makeCurrency(data.sum)}</td>
+              <td id={selectOption}>{data[selectOption]}</td>
+              <td id="sum" style={{ textAlign: 'right' }}>
+                {makeCurrency(data.sum)}
+              </td>
             </tr>
           ))}
         </tbody>
         <tfoot>
           <tr>
             <td> Total</td>
-            <td style={{ textAlign: 'right' }}>
+            <td id="totalValue" style={{ textAlign: 'right' }}>
               {makeCurrency(getTotal(filteredData))}
             </td>
           </tr>
