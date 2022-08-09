@@ -1,7 +1,7 @@
 // Gets the direction of the table header icon either ascending or descending
-export const getIconDirection = (
-  key: TableKey | GroupKey,
-  sortConfig: TableConfig | null,
+export const getIconDirection = <A extends object>(
+  key: keyof A,
+  sortConfig: SortConfig<keyof A> | null,
 ) => {
   if (!sortConfig) {
     return;
@@ -50,10 +50,9 @@ export const getTotal = (filteredData: GroupedFilteredData[]) => {
 };
 
 // Sort table data fields
-
-export const sortField = (
-  sortableData: SortableDataTypes,
-  sortConfig: TableConfig,
+const sortField = <A extends SortableDataType>(
+  sortableData: A[],
+  sortConfig: SortConfig<keyof A>,
 ) => {
   sortableData.sort((a, b) => {
     if (a[sortConfig.key] < b[sortConfig.key]) {
@@ -66,9 +65,9 @@ export const sortField = (
   });
 };
 
-export const sortAmount = (
-  sortableData: SortableDataTypes,
-  sortConfig: TableConfig,
+const sortAmount = <A extends SortableDataType>(
+  sortableData: A[],
+  sortConfig: SortConfig<keyof A>,
 ) => {
   sortableData.sort((a, b) => {
     if (
@@ -87,9 +86,9 @@ export const sortAmount = (
   });
 };
 
-export const sortDate = (
-  sortableData: SortableDataTypes,
-  sortConfig: TableConfig,
+const sortDate = <A extends SortableDataType>(
+  sortableData: A[],
+  sortConfig: SortConfig<keyof A>,
 ) => {
   sortableData.sort((a, b) => {
     if (new Date(a['date']) < new Date(b['date'])) {
@@ -100,4 +99,17 @@ export const sortDate = (
     }
     return 0;
   });
+};
+
+export const sortData = <A extends SortableDataType>(
+  sortableData: A[],
+  sortConfig: SortConfig<keyof A>,
+) => {
+  if (sortConfig.key === 'amount') {
+    sortAmount(sortableData, sortConfig);
+  } else if (sortConfig.key === 'date') {
+    sortDate(sortableData, sortConfig);
+  } else {
+    sortField(sortableData, sortConfig);
+  }
 };

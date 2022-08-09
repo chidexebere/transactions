@@ -4,22 +4,16 @@ type JsonDataObject = {
   amount: string;
   date: string;
   member_name: string;
-  sum: number;
 };
 
 type TableProps = {
-  tableData: jsonDataObject[];
+  tableData: JsonDataObject[];
 };
 
-type TableKey =
-  | 'departments'
-  | 'project_name'
-  | 'amount'
-  | 'date'
-  | 'member_name';
+type TableKey = keyof JsonDataObject;
 
-type TableConfig = {
-  key: TableKey | GroupKey;
+type SortConfig<T> = {
+  key: T;
   direction: string;
 };
 
@@ -37,12 +31,4 @@ type GroupedFilteredData = {
   sum: number;
 };
 
-type GroupKey =
-  | 'departments'
-  | 'project_name'
-  | 'amount'
-  | 'date'
-  | 'member_name'
-  | 'sum';
-
-type SortableDataTypes = (GroupedFilteredData | JsonDataObject)[];
+type SortableDataType = GroupedFilteredData | JsonDataObject;
