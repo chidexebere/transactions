@@ -19,13 +19,6 @@ const useSortableData = <A extends SortableDataType>(data: A[]) => {
 
     if (sortConfig !== null) {
       sortData(sortableData, sortConfig);
-      // if (sortConfig.key === 'amount') {
-      //   sortAmount(sortableData, sortConfig);
-      // } else if (sortConfig.key === 'date') {
-      //   sortDate(sortableData, sortConfig);
-      // } else {
-      //   sortField(sortableData, sortConfig);
-      // }
     }
     return sortableData;
   }, [data, sortConfig]);
