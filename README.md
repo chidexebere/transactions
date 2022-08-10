@@ -8,20 +8,6 @@ A feature that gets user uploaded expenses, displays them in a tabular form and 
 
 [On CodeSandbox with AG-Grid](https://codesandbox.io/s/github/chidexebere/transactions/tree/using-AG-GRID)
 
-## Features
-
-1. Displays expenses data in tabular form.
-   ![user expenses table](./screenshots/expenses1.png)
-
-2. Allows user to perform sort(asc/descending order) operation by clicking on each column header.
-   ![sorting on user expenses table using each column](./screenshots/expenses2.png)
-
-3. Group expenses data displaying total sum of expenses by departments, project name, date and member name.
-   ![group expenses table showing filtering and total](./screenshots/group1.png)
-
-4. Displays total sum of value in amount column.
-   ![group expenses table showing sorting and total](./screenshots/group1.png)
-
 ## Installation
 
 You would need to have [Node.js](https://nodejs.org/en/) and [yarn](https://yarnpkg.com/) installed.
