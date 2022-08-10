@@ -1,9 +1,12 @@
 ## Pectus Finance Feature - Transactions
 
 A feature that gets user uploaded expenses, displays them in a tabular form and allows the user to sort and filter.
-[Demo](https://5ezprg.csb.app/)
 
-[On CodeSandbox](https://codesandbox.io/s/github/chidexebere/transactions)
+## Using AG-Grid inplace of Tables
+
+[Demo with AG-Grid](https://u16mkn.csb.app/)
+
+[On CodeSandbox with AG-Grid](https://codesandbox.io/s/github/chidexebere/transactions/tree/using-AG-GRID)
 
 ## Features
 
@@ -62,9 +65,3 @@ yarn e2e
 - React testing library and MSW : for unit and integration tests
 - Cypress : for end-to-end tests
 - Eslint for linting and Prettier for code formating
-
-## Using AG-Grid inplace of Tables
-
-[Demo with AG-Grid](https://u16mkn.csb.app/)
-
-[On CodeSandbox with AG-Grid](https://codesandbox.io/s/github/chidexebere/transactions/tree/using-AG-GRID)
