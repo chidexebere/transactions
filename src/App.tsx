@@ -1,6 +1,7 @@
 import { useJsonData } from './hooks';
 import { StyledLayout } from './styles/Layout.styled';
-import Table from './components/Table';
+// import Table from './components/Table';
+import AgDataGrid from './components/AG-grid';
 
 function App() {
   const { isLoading, isError, data } = useJsonData();
@@ -21,7 +22,11 @@ function App() {
     );
   }
 
-  return <StyledLayout>{data && <Table tableData={data} />}</StyledLayout>;
+  // Using Custom Table
+  // return <StyledLayout>{data && <Table tableData={data} />}</StyledLayout>;
+
+  // Using AG-grid
+  return <StyledLayout>{data && <AgDataGrid tableData={data} />}</StyledLayout>;
 }
 
 export default App;
